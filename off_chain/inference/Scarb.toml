@@ -1,0 +1,13 @@
+[package]
+name = "inference"
+version = "0.1.0"
+edition = "2023_10"
+
+[dependencies]
+node_aff1_weight = { path = "../initializers/node_aff1_weight"} 
+node_aff1_bias = { path = "../initializers/node_aff1_bias"} 
+orion = { git = "https://github.com/gizatechxyz/orion.git", rev = "57871a4" } 
+
+
+[cairo]
+enable-gas = false
