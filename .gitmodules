@@ -1,0 +1,6 @@
+[submodule "cairo-vm"]
+	path = cairo-vm
+	url = https://github.com/lambdaclass/cairo-vm
+[submodule "stone-prover"]
+	path = stone-prover
+	url = https://github.com/starkware-libs/stone-prover

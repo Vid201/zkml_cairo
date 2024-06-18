@@ -1,3 +1,4 @@
 torch
 ezkl
 onnx
+# giza-cli, install with pipx
