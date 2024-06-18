@@ -25,6 +25,13 @@ if n > 0:
 
 out = {
     "field": "PrimeField0",
+    "channel_hash": "poseidon3",
+    "commitment_hash": "keccak256_masked160_lsb",
+    "n_verifier_friendly_commitment_layers": 9999,
+    "pow_hash": "keccak256",
+    "statement": {
+        "page_hash": "pedersen"
+    },
     "stark": {
         "fri": {
             "fri_step_list": fri_step_list,
@@ -35,6 +42,8 @@ out = {
         "log_n_cosets": 4,
     },
     "use_extension_field": False,
+    "verifier_friendly_channel_updates": True,
+    "verifier_friendly_commitment_hash": "poseidon3"
 }
 
 data_path = "cpu_air_params.json"

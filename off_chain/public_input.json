@@ -1,52 +1,32 @@
 {
-  "layout": "all_cairo",
+  "layout": "small",
   "rc_min": 0,
   "rc_max": 65535,
-  "n_steps": 131072,
+  "n_steps": 8192,
   "memory_segments": {
-    "range_check": {
-      "begin_addr": 10295,
-      "stop_ptr": 10447
-    },
-    "bitwise": {
-      "begin_addr": 26807,
-      "stop_ptr": 26807
-    },
-    "ecdsa": {
-      "begin_addr": 26679,
-      "stop_ptr": 26679
-    },
-    "keccak": {
-      "begin_addr": 68663,
-      "stop_ptr": 68663
-    },
-    "program": {
-      "begin_addr": 1,
-      "stop_ptr": 53
-    },
-    "ec_op": {
-      "begin_addr": 67767,
-      "stop_ptr": 67767
-    },
-    "execution": {
-      "begin_addr": 6144,
-      "stop_ptr": 8740
-    },
     "pedersen": {
       "begin_addr": 8759,
       "stop_ptr": 8759
+    },
+    "ecdsa": {
+      "begin_addr": 12855,
+      "stop_ptr": 12855
     },
     "output": {
       "begin_addr": 8740,
       "stop_ptr": 8759
     },
-    "range_check96": {
-      "begin_addr": 72759,
-      "stop_ptr": 72759
+    "range_check": {
+      "begin_addr": 11831,
+      "stop_ptr": 11983
     },
-    "poseidon": {
-      "begin_addr": 69687,
-      "stop_ptr": 69687
+    "execution": {
+      "begin_addr": 6144,
+      "stop_ptr": 8740
+    },
+    "program": {
+      "begin_addr": 1,
+      "stop_ptr": 53
     }
   },
   "public_memory": [

@@ -1,6 +1,6 @@
 {
-  "trace_path": "/home/vid/Documents/DEAI/zkml/cairo/off_chain/trace.json",
-  "memory_path": "/home/vid/Documents/DEAI/zkml/cairo/off_chain/memory.json",
+  "trace_path": "/home/vid/Documents/DEAI/zkml/cairo/off_chain/trace.bin",
+  "memory_path": "/home/vid/Documents/DEAI/zkml/cairo/off_chain/memory.bin",
   "pedersen": [],
   "range_check": [
     {
@@ -612,9 +612,5 @@
       "value": "0xffffffffffffffffffffffff00000001"
     }
   ],
-  "ecdsa": [],
-  "bitwise": [],
-  "ec_op": [],
-  "keccak": [],
-  "poseidon": []
+  "ecdsa": []
 }

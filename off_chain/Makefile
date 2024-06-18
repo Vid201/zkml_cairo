@@ -8,9 +8,9 @@ run:
 	../cairo-vm/target/debug/cairo1-run inference/target/dev/inference.sierra.json \
 		--air_public_input public_input.json \
 		--air_private_input private_input.json \
-		--trace_file trace.json \
-		--memory_file memory.json \
-		--layout all_cairo \
+		--trace_file trace.bin \
+		--memory_file memory.bin \
+		--layout small \
 		--args "$$input" \
 		--proof_mode \
 		--print_output
