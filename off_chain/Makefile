@@ -27,4 +27,6 @@ prove:
 		--parameter_file=cpu_air_params.json
 
 verify:
-	echo "verify"
+	./../cpu_air_verifier \
+		--in_file=proof.json \
+	&& echo "Proof is valid"
