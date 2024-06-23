@@ -4,3 +4,6 @@
 [submodule "stone-prover"]
 	path = stone-prover
 	url = https://github.com/starkware-libs/stone-prover
+[submodule "integrity"]
+	path = integrity
+	url = https://github.com/HerodotusDev/integrity

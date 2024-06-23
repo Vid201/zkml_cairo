@@ -24,9 +24,25 @@ prove:
 		--private_input_file=private_input.json \
 		--public_input_file=public_input.json \
 		--prover_config_file=cpu_air_prover_config.json \
-		--parameter_file=cpu_air_params.json
+		--parameter_file=cpu_air_params.json \
+		--generate_annotations=true
 
 verify:
 	./../cpu_air_verifier \
 		--in_file=proof.json \
 	&& echo "Proof is valid"
+
+setup_integrity:
+	cd ../integrity; \
+	python3 configure.py -l small -s keccak; \
+	scarb build
+
+verify_proof_local:
+	cd ../integrity; \
+	cargo run --release --bin runner -- --program target/dev/cairo_verifier.sierra.json -c cairo1 < ../off_chain/proof.json
+
+verify_proof_starknet:
+	cd ../integrity; \
+	cargo run --release --bin snfoundry_proof_serializer -- -c cairo1 < ../off_chain/proof.json > ../off_chain/starknet_calldata; \
+	cd examples/starknet; \
+	./1-verify-proof.sh 0x274d8165a19590bdeaa94d1dd427e2034462d7611754ab3e15714a908c60df7 ../../../off_chain/starknet_calldata
