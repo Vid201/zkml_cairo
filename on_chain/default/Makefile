@@ -5,8 +5,19 @@ include .env
 # transpile:
 # 	giza transpile network.onnx --output-path model
 
-input:
+prepare_input:
 	python3 input.py
+	@input=$$(cat input.txt); \
+	cd ../../cairo-vm/cairo1-run; \
+	cargo run ../../models/converter.cairo \
+		--trace_file trace.bin \
+		--memory_file memory.bin \
+		--args "$$input" \
+		--layout small \
+		--print_output > ../../on_chain/default/input.data; \
+	rm trace.bin memory.bin; \
+	cd ../../on_chain/default
+	python3 clean.py
 
 build:
 	cd model/inference; \
@@ -20,4 +31,4 @@ deploy:
 
 inference:
 	cd model/inference; \
-	snforge test --max-n-steps 10000000
+	snforge test --max-n-steps 10000000 --detailed-resources

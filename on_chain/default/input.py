@@ -1,32 +1,20 @@
-import json
+import numpy as np
 import os
+import json
+from osiris.cairo.serde.data_structures import create_tensor_from_array
+from osiris.cairo.serde.serialize import serializer
 
-with open('input.json') as f:
-    input = json.load(f)
-    
-    cairo_file_path = os.path.join('model/inference/src/input.cairo')
+data_path = os.path.join('input.json')
 
-    with open(cairo_file_path, 'w') as f:
-        # imports
-        f.write("""use core::array::ArrayTrait;
-use orion::operators::tensor::{core::{Tensor, TensorTrait}};
-use orion::operators::tensor::FP16x16Tensor;
-use orion::numbers::fixed_point::implementations::fp16x16::core::{FP16x16, FixedTrait};
-                
-fn input() -> Tensor<FP16x16> {
-    let mut shape = ArrayTrait::new();
-""");
+json = json.load(open(data_path, 'r'))
+data = np.array(json['input_data']).reshape(1,100)
 
-        # shapes
-        for shape in input['input_shapes'][0]:
-            f.write(f"    shape.append({shape});\n")
+print('Data loaded: ', data)
 
-        # input data
-        f.write("    let mut data = ArrayTrait::new();\n");
+tensor = create_tensor_from_array(data)
+serialized_data = serializer(tensor)
 
-        for data in input['input_data'][0]:
-            f.write("    data.append(FixedTrait::new({0}, {1}));\n".format(abs(int(data * 2**16)), str(data < 0).lower()));
+print('Data serialized: ', serialized_data)
 
-        f.write("    let tensor = TensorTrait::<FP16x16>::new(shape.span(), data.span());\n");
-        f.write("    return tensor;\n");
-        f.write("}");
+with open("input.txt", "w") as text_file:
+    text_file.write(serialized_data)

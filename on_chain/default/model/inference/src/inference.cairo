@@ -33,7 +33,10 @@ mod OrionRunner {
     }
 
     #[external(v0)]
-    fn inference(self: @ContractState, node_input: Tensor<FP16x16>) -> Tensor<FP16x16> {
+    fn inference(self: @ContractState, input: Array<felt252>) -> Array<felt252> {
+        let mut input = input.span();
+        let node_input: Tensor<FP16x16> = Serde::deserialize(ref input).unwrap();
+
         let node__aff1_gemm_output_0 = NNTrait::gemm(node_input, get_node_aff1_weight(), Option::Some(get_node_aff1_bias()), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
         let node__aff2_gemm_output_0 = NNTrait::gemm(node__aff1_gemm_output_0, get_node_aff2_weight(), Option::Some(get_node_aff2_bias()), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
         let node__aff3_gemm_output_0 = NNTrait::gemm(node__aff2_gemm_output_0, get_node_aff3_weight(), Option::Some(get_node_aff3_bias()), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
@@ -46,6 +49,8 @@ mod OrionRunner {
         let node__aff10_gemm_output_0 = NNTrait::gemm(node__aff9_gemm_output_0, get_node_aff10_weight(), Option::Some(get_node_aff10_bias()), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
         let node_output = NNTrait::relu(@node__aff10_gemm_output_0);
 
-        node_output
+        let mut output: Array<felt252> = ArrayTrait::new();
+        node_output.serialize(ref output);
+        output
     }
 }
