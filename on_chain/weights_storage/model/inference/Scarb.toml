@@ -5,6 +5,9 @@ edition = "2023_10"
 
 [dependencies]
 starknet = ">=2.5.3"
+orion = { git = "https://github.com/Vid201/orion.git", branch = "chore/update_deps" } 
+alexandria_storage = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "0aa7cca" }
+
 node_aff1_weight = { path = "../initializers/node_aff1_weight"} 
 node_aff1_bias = { path = "../initializers/node_aff1_bias"} 
 node_aff2_weight = { path = "../initializers/node_aff2_weight"} 
@@ -24,9 +27,7 @@ node_aff8_bias = { path = "../initializers/node_aff8_bias"}
 node_aff9_weight = { path = "../initializers/node_aff9_weight"} 
 node_aff9_bias = { path = "../initializers/node_aff9_bias"} 
 node_aff10_weight = { path = "../initializers/node_aff10_weight"} 
-node_aff10_bias = { path = "../initializers/node_aff10_bias"} 
-orion = { git = "https://github.com/Vid201/orion.git", branch = "chore/update_deps" } 
-alexandria_bytes = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "0aa7cca" }
+node_aff10_bias = { path = "../initializers/node_aff10_bias"}
 
 [dev-dependencies]
 snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.25.0" }

@@ -24,10 +24,10 @@ build:
 	scarb build
 
 declare:
-	starkli declare --account ${STARKNET_ACCOUNT} --keystore ${STARKNET_KEYSTORE} --network ${STARKNET_NETWORK} model/inference/target/dev/model_10l_fc_relu_OrionRunner.contract_class.json --compiler-version 2.6.2 
+	starkli declare --account ${STARKNET_ACCOUNT} --keystore ${STARKNET_KEYSTORE} --network ${STARKNET_NETWORK} model/inference/target/dev/model_10l_fc_relu_ModelContract.contract_class.json --compiler-version 2.6.2
 
 deploy:
-	starkli deploy --account ${STARKNET_ACCOUNT} --keystore ${STARKNET_KEYSTORE} --network ${STARKNET_NETWORK} 
+	starkli deploy --account ${STARKNET_ACCOUNT} --keystore ${STARKNET_KEYSTORE} --network ${STARKNET_NETWORK} 0x017fb545842c4a096a5124398cadb361b2af023699d6ec8deff5d50fc62a99d5
 
 inference:
 	cd model/inference; \

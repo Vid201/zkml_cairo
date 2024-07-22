@@ -25,7 +25,6 @@ mod tests {
 
     use core::debug::PrintTrait;
 
-    use alexandria_bytes::{Bytes, BytesTrait, BytesStore};
     use orion::numbers::{FixedTrait, FP16x16};
     use orion::operators::nn::{NNTrait, FP16x16NN};
     use orion::operators::tensor::{FP16x16Tensor, Tensor, TensorTrait};
@@ -37,12 +36,12 @@ mod tests {
         let (contract_address, _) = contract.deploy(@array![]).unwrap();
         let dispatcher = IModelContractDispatcher { contract_address };
 
-        let weights: Array<felt252> = array![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let weights: Array<u32> = array![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         let signs: Array<bool> = array![true, false, true, false, true, false, true, false, true, false];
 
         dispatcher.add_weights(weights, signs);
         let shape: Array<usize> = array![2, 5];
-        let (tensor, _, _) = dispatcher.get_weights(shape, 0, 0);
+        let tensor = dispatcher.get_weights(shape, 0);
 
         let mut output: Array<felt252> = ArrayTrait::new();
         tensor.serialize(ref output);
@@ -66,14 +65,14 @@ mod tests {
         
         dispatcher.add_weights(bias1_num, bias1_sign);
 
-        let (bias1, index_weights, index_signs) = dispatcher.get_weights(array![1, 90], 0, 0);
+        let bias1 = dispatcher.get_weights(array![1, 90], 0);
 
         let bias2_num = array![4495, 4923, 4176, 5129, 6092, 5179, 4690, 1948, 1710, 4751, 3591, 1007, 6884, 4336, 809, 1070, 1489, 5854, 2824, 2777, 720, 6321, 627, 4916, 851, 2170, 3175, 951, 3573, 3609, 150, 5256, 2121, 2396, 6896, 948, 4664, 550, 6110, 5309, 2177, 6080, 1622, 5721, 4824, 3991, 5932, 239, 6028, 6468, 2489, 4443, 576, 1088, 6812, 3897, 5320, 2305, 5517, 896, 4114, 6732, 372, 5317, 2745, 199, 5518, 6345, 3887, 2721, 1618, 6823, 4025, 261, 2905, 6305, 4961, 3136, 1847, 1996];
         let bias2_sign = array![true, true, false, true, false, true, false, false, true, false, false, false, false, true, true, false, false, true, true, true, true, true, false, false, false, false, true, false, true, false, false, true, true, false, false, true, false, false, true, true, true, false, true, true, true, true, false, true, true, true, true, false, false, true, true, true, false, false, true, true, true, false, true, false, true, false, true, true, false, true, false, false, true, false, false, false, false, true, true, false];
 
         dispatcher.add_weights(bias2_num, bias2_sign);
 
-        let (bias2, _, _) = dispatcher.get_weights(array![1, 80], index_weights, index_signs);
+        let bias2 = dispatcher.get_weights(array![1, 80], 90);
 
         let node__aff1_gemm_output_0 = NNTrait::gemm(node_input, get_node_aff1_weight(), Option::Some(bias1), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
         let node__aff2_gemm_output_0 = NNTrait::gemm(node__aff1_gemm_output_0, get_node_aff2_weight(), Option::Some(bias2), Option::Some(FP16x16 { mag: 65536, sign: false }), Option::Some(FP16x16 { mag: 65536, sign: false }), false, true);
