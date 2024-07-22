@@ -31,4 +31,4 @@ deploy:
 
 inference:
 	cd model/inference; \
-	snforge test --max-n-steps 10000000 --detailed-resources
+	snforge test --max-n-steps 10000000 --detailed-resources inference_test 

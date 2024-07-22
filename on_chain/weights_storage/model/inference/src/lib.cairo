@@ -1,3 +1,2 @@
-mod inference;
+mod contract;
 mod test;
-mod storage;

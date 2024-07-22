@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2023_10"
 
 [dependencies]
-orion = { git = "https://github.com/gizatechxyz/orion.git", rev = "74e63f34275e257cf21ce13c440b1940bff812ca" } 
+orion = { git = "https://github.com/Vid201/orion.git", branch = "chore/update_deps" } 
 [lib]
 sierra-text = true

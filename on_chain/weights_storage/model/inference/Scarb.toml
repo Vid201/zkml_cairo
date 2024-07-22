@@ -25,8 +25,11 @@ node_aff9_weight = { path = "../initializers/node_aff9_weight"}
 node_aff9_bias = { path = "../initializers/node_aff9_bias"} 
 node_aff10_weight = { path = "../initializers/node_aff10_weight"} 
 node_aff10_bias = { path = "../initializers/node_aff10_bias"} 
-orion = { git = "https://github.com/gizatechxyz/orion.git", rev = "74e63f34275e257cf21ce13c440b1940bff812ca" } 
-alexandria_data_structures = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "800f5ad" }
+orion = { git = "https://github.com/Vid201/orion.git", branch = "chore/update_deps" } 
+alexandria_bytes = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "0aa7cca" }
+
+[dev-dependencies]
+snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.25.0" }
 
 [lib]
 sierra-text = true
