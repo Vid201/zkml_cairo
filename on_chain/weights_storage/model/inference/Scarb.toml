@@ -33,6 +33,7 @@ node_aff10_bias = { path = "../initializers/node_aff10_bias"}
 snforge_std = { git = "https://github.com/foundry-rs/starknet-foundry.git", tag = "v0.25.0" }
 
 [lib]
-sierra-text = true
+sierra = true
+casm = true
 
 [[target.starknet-contract]]

@@ -1,4 +1,5 @@
 torch
 ezkl
 onnx
+starknet-py
 # giza-cli, install with pipx
