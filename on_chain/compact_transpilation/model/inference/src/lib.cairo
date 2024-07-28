@@ -1,0 +1,23 @@
+mod inference;
+mod test;
+
+mod node_aff1_weight;
+mod node_aff1_bias;
+mod node_aff2_weight;
+mod node_aff2_bias;
+mod node_aff3_weight;
+mod node_aff3_bias;
+mod node_aff4_weight;
+mod node_aff4_bias;
+mod node_aff5_weight;
+mod node_aff5_bias;
+mod node_aff6_weight;
+mod node_aff6_bias;
+mod node_aff7_weight;
+mod node_aff7_bias;
+mod node_aff8_weight;
+mod node_aff8_bias;
+mod node_aff9_weight;
+mod node_aff9_bias;
+mod node_aff10_weight;
+mod node_aff10_bias;

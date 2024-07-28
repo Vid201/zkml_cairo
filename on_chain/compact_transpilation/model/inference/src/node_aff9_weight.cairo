@@ -1,0 +1,16 @@
+use orion::operators::tensor::{FP16x16Tensor, Tensor, TensorTrait};
+use orion::numbers::{FixedTrait, FP16x16};
+
+fn get_node_aff9_weight() -> Tensor<FP16x16> {
+  let shape = array![10, 20];
+  let weights_num = array![19287, 32276, 1032, 8363, 15234, 4139, 23827, 22867, 10559, 9997, 19346, 14475, 6288, 9225, 8009, 14271, 10222, 11519, 6701, 648, 17677, 21279, 1780, 4382, 14787, 7173, 2349, 18339, 6312, 28632, 9158, 7149, 32134, 4209, 9582, 4324, 20240, 9113, 15016, 4639, 6984, 15162, 662, 30242, 819, 2454, 8128, 22539, 8956, 9810, 26336, 1960, 12440, 17363, 1936, 21696, 4294, 23797, 1274, 11373, 23046, 1045, 4180, 18658, 2829, 46808, 4501, 1968, 1022, 1750, 6695, 31, 8692, 16750, 11673, 17512, 14067, 8666, 6654, 2940, 24678, 3160, 15428, 21263, 17443, 5257, 3190, 15558, 19240, 5196, 8947, 5480, 15017, 8396, 9912, 20041, 7605, 28872, 1804, 14273, 5458, 7883, 5398, 20797, 25571, 11740, 5024, 14942, 8974, 21307, 11542, 28980, 3969, 14262, 10950, 14630, 1186, 3560, 687, 25014, 38425, 3138, 9560, 4968, 26983, 16300, 3253, 12942, 7839, 7267, 3825, 9459, 792, 8223, 8422, 12959, 1324, 9134, 29784, 4771, 230, 12543, 25956, 5199, 17767, 14206, 11077, 4351, 28886, 8070, 10949, 12293, 956, 26966, 5049, 9891, 9495, 20143, 16025, 1723, 5576, 9678, 11329, 16179, 5249, 7952, 9300, 9453, 18734, 5474, 2175, 2928, 11828, 9737, 35742, 4142, 36852, 13893, 1587, 6011, 15392, 20332, 3670, 815, 2858, 14951, 3217, 7391, 4563, 29662, 27612, 7323, 26, 538, 4515, 32592, 3549, 17571, 11132, 9422];
+  let weights_sign = array![true, false, true, true, true, true, false, true, false, false, false, true, false, false, false, false, false, false, true, true, true, true, true, true, false, true, false, true, false, false, true, true, true, true, true, false, false, true, false, true, false, true, false, false, true, false, true, true, false, true, false, false, true, false, true, true, false, false, true, false, false, true, false, true, false, true, false, false, false, false, false, false, false, false, true, true, false, true, true, true, false, false, false, true, false, false, true, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, true, true, true, false, false, false, true, false, true, false, true, false, false, true, false, false, true, false, false, false, false, true, true, false, false, true, true, false, false, true, false, true, false, false, true, false, false, true, true, true, true, true, true, true, true, false, false, false, true, true, false, false, false, false, true, true, true, false, true, true, true, true, true, true, false, true, true, false, true, true, true, true, true, false, false, true, false, false, true, false, false, false, false, true, true, false, true, false, true, false, false, true, false, false, true, true];
+  let mut data = array![];
+  let mut index = 0;
+  loop {
+    if index == weights_num.len() { break; }
+    data.append(FP16x16 { mag: *weights_num.at(index), sign: *weights_sign.at(index) });
+    index += 1;
+  };
+  TensorTrait::new(shape.span(), data.span())
+}
